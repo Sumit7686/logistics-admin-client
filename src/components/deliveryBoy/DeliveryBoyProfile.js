@@ -19,7 +19,6 @@ export default function DeliveryBoyProfile({ setAuth }) {
     await axios
       .get(`http://localhost:5001/deliveryBoy/personalDetailDeliveryBoy/${id}`)
       .then((result) => {
-        console.log("result boy :", result);
         setRole(result.data.message.role);
         setEmail(result.data.message.email);
         // setPassword(result.data.message.password);
@@ -56,6 +55,12 @@ export default function DeliveryBoyProfile({ setAuth }) {
           {/* <p className="title">Password : {password} </p> */}
           <button>Change Password</button>
         </div>
+      </div>
+
+      <div className="text-center my-3 container">
+        <a href="/DeliveryBoyHome" style={{ textDecoration: "none" }}>
+          <button>Back</button>
+        </a>
       </div>
     </>
   );

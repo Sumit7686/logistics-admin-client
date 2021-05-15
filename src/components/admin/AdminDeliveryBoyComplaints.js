@@ -1,18 +1,19 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { RiDeleteBinFill } from "react-icons/ri";
 import { toast } from "react-toastify";
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import AdminNavbar from "../navbar/AdminNavbar";
-import { RiDeleteBinFill } from "react-icons/ri";
 
-export default function AdminUser({ setAuth }) {
+export default function AdminDeliveryBoyComplaints({ setAuth }) {
   const [value, setValue] = useState([]);
 
   const getData = async () => {
     await axios
-      .get("http://localhost:5001/admin/allUser")
+      .get("http://localhost:5001/complaints/getComplaints")
       .then((result) => {
         setValue(result.data.message);
+        console.log(result.data.message);
       })
       .catch((err) => {
         console.log("admin user get data error :", err);
@@ -21,7 +22,7 @@ export default function AdminUser({ setAuth }) {
 
   const deleteUser = async (id) => {
     await axios
-      .delete(`http://localhost:5001/admin/deleteUser/${id}`)
+      .delete(`http://localhost:5001/complaints/deleteComplaints/${id}`)
       .then((result) => {
         toast.success(result.data.message);
         getData();
@@ -41,15 +42,13 @@ export default function AdminUser({ setAuth }) {
       <AdminNavbar setAuth={setAuth} />
 
       <div className="pt-4 container">
-        <h3 className="my-3 text-center">User Details</h3>
+        <h3 className="my-3 text-center">Delivery Boy Complaints Details</h3>
         <table id="table-to-xls" className="table table-hover table-dark">
           <thead>
             <tr className="text-center">
-              <th scope="col">Id</th>
-              <th scope="col">Name</th>
-              <th scope="col">Email ID</th>
-              <th scope="col">Pincode</th>
-              <th scope="col">Contact</th>
+              <th scope="col">DeliveryBoy ID</th>
+              <th scope="col">Subject</th>
+              <th scope="col">Description</th>
               <th scope="col">Delete</th>
             </tr>
           </thead>
@@ -57,11 +56,9 @@ export default function AdminUser({ setAuth }) {
             {value.length > 0 &&
               value.map((element, inx) => (
                 <tr key={inx} className="text-center">
-                  <td>{element._id}</td>
-                  <td>{element.name}</td>
-                  <td>{element.email}</td>
-                  <td>{element.pincode}</td>
-                  <td>{element.contact}</td>
+                  <td>{element.deliveryBoy_id}</td>
+                  <td>{element.subject}</td>
+                  <td>{element.description}</td>
                   <td
                     onClick={() => deleteUser(element._id)}
                     style={{ fontSize: "20px" }}
@@ -79,14 +76,14 @@ export default function AdminUser({ setAuth }) {
           id="test-table-xls-button"
           className="download-table-xls-button"
           table="table-to-xls"
-          filename="admin-user-details"
+          filename="admin-deliveryBoy-complaints"
           sheet="tablexls"
           buttonText="Download as XLS"
         />
       </div>
 
       <div className="text-center mt-3 container">
-        <a href="/AdminHome" style={{ textDecoration: "none" }}>
+        <a href="/AdminDeliveryBoy" style={{ textDecoration: "none" }}>
           <button>Back</button>
         </a>
       </div>

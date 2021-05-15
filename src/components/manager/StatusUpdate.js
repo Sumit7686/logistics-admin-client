@@ -50,7 +50,7 @@ export default function StatusUpdate(props, { setAuth }) {
       <ManagerNavbar setAuth={setAuth} />
 
       <div className="py-5 items-center">
-        <h2 className="text-center">Manager Profile Card</h2>
+        <h2 className="text-center">Order Status Update</h2>
         <div className="profileCard pt-5">
           <label className="text-bold h4">Status Update</label>
           <select
@@ -111,12 +111,9 @@ export default function StatusUpdate(props, { setAuth }) {
         </div>
       </div>
 
-      <div className="container">
-        <a href="/ManagerOrder">
-          <button
-            className="btn btn-outline-primary rounded"
-            onClick={() => localStorage.removeItem("order_id")}
-          >
+      <div className="text-center mt-5 container">
+        <a href="/ManagerOrder" style={{ textDecoration: "none" }}>
+          <button onClick={() => localStorage.removeItem("order_id")}>
             Back
           </button>
         </a>

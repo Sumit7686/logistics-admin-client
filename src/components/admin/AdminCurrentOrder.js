@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import AdminNavbar from "../navbar/AdminNavbar";
 
 export default function AdminCurrentOrder({ setAuth }) {
@@ -26,10 +27,9 @@ export default function AdminCurrentOrder({ setAuth }) {
 
       <div className="pt-4 container">
         <h3 className="my-3 text-center">Admin Current Order</h3>
-        <table className="table table-hover table-dark">
+        <table id="table-to-xls" className="table table-hover table-dark">
           <thead>
             <tr className="text-center">
-              <th scope="col">Id</th>
               <th scope="col">user_id</th>
               <th scope="col">order_status</th>
               <th scope="col">order_user_city</th>
@@ -45,7 +45,6 @@ export default function AdminCurrentOrder({ setAuth }) {
                     ""
                   ) : (
                     <>
-                      <td>{inx}</td>
                       <td>{element.user_id}</td>
                       <td>{element.order_status}</td>
                       <td>{element.order_user_city}</td>
@@ -59,7 +58,18 @@ export default function AdminCurrentOrder({ setAuth }) {
         </table>
       </div>
 
-      <div className="text-center mt-5 container">
+      <div className="container mt-5 pt-3">
+        <ReactHTMLTableToExcel
+          id="test-table-xls-button"
+          className="download-table-xls-button"
+          table="table-to-xls"
+          filename="admin-current-order"
+          sheet="tablexls"
+          buttonText="Download as XLS"
+        />
+      </div>
+
+      <div className="text-center mt-3 container">
         <a href="/AdminOrder" style={{ textDecoration: "none" }}>
           <button>Back</button>
         </a>

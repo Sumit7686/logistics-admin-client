@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ManagerNavbar from "../navbar/ManagerNavbar";
+import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import axios from "axios";
 
 export default function ManagerCompleteOrder({ setAuth }) {
@@ -25,24 +26,9 @@ export default function ManagerCompleteOrder({ setAuth }) {
     <>
       <ManagerNavbar setAuth={setAuth} />
 
-      <div className="container">
-        <div className="d-flex pt-5 w-50 text-center">
-          <a href="/ManagerOrder">
-            <button className="btn btn-outline-dark rounded">
-              Current Order
-            </button>
-          </a>
-          <a href="/ManagerCompleteOrder">
-            <button className="btn btn-outline-dark rounded">
-              Complete Order
-            </button>
-          </a>
-        </div>
-      </div>
-
       <div className="pt-4 container">
         <h3 className="my-3 text-center">Manager Complete Order</h3>
-        <table className="table table-hover table-dark">
+        <table id="table-to-xls" className="table table-hover table-dark">
           <thead>
             <tr className="text-center">
               <th scope="col">user_id</th>
@@ -71,7 +57,18 @@ export default function ManagerCompleteOrder({ setAuth }) {
         </table>
       </div>
 
-      <div className="text-center mt-5 container">
+      <div className="container mt-5 pt-3">
+        <ReactHTMLTableToExcel
+          id="test-table-xls-button"
+          className="download-table-xls-button"
+          table="table-to-xls"
+          filename="manager-complete-order"
+          sheet="tablexls"
+          buttonText="Download as XLS"
+        />
+      </div>
+
+      <div className="text-center mt-3 container">
         <a href="/ManagerOrder" style={{ textDecoration: "none" }}>
           <button>Back</button>
         </a>

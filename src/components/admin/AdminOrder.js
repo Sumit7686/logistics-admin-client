@@ -47,41 +47,6 @@ export default function AdminOrder({ setAuth }) {
         </div>
       </div>
 
-      {/* <div className="pt-4 container">
-        <h3 className="my-3 text-center">Admin Order</h3>
-        <table className="table table-hover table-dark">
-          <thead>
-            <tr className="text-center">
-              <th scope="col">Id</th>
-              <th scope="col">user_id</th>
-              <th scope="col">order_status</th>
-              <th scope="col">order_user_city</th>
-              <th scope="col">order_id</th>
-              <th scope="col">awb_number</th>
-            </tr>
-          </thead>
-          <tbody>
-            {value.length > 0 &&
-              value.map((element, inx) => (
-                <tr key={inx} className="text-center">
-                  {element.order_status === "Done" ? (
-                    ""
-                  ) : (
-                    <>
-                      <td>{inx}</td>
-                      <td>{element.user_id}</td>
-                      <td>{element.order_status}</td>
-                      <td>{element.order_user_city}</td>
-                      <td>{element.order_id}</td>
-                      <td>{element.awb_number}</td>
-                    </>
-                  )}
-                </tr>
-              ))}
-          </tbody>
-        </table>
-      </div> */}
-
       <div className="text-center mt-5 container">
         <a href="/AdminHome" style={{ textDecoration: "none" }}>
           <button>Back</button>

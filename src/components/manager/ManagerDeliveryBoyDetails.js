@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
-import AdminNavbar from "../navbar/AdminNavbar";
+import ManagerNavbar from "../navbar/ManagerNavbar";
 
-export default function AdminCompleteOrder({ setAuth }) {
+export default function ManagerDeliveryBoyDetails({ setAuth }) {
+  const [id, setId] = useState("");
   const [value, setValue] = useState([]);
 
   const getData = async () => {
+    setId(localStorage.getItem("id"));
     await axios
-      .get("http://localhost:5001/admin/allOrder")
+      .get(`http://localhost:5001/manager/allDeliveryBoyManager/${id}`)
       .then((result) => {
         setValue(result.data.message);
       })
@@ -19,40 +21,35 @@ export default function AdminCompleteOrder({ setAuth }) {
 
   useEffect(() => {
     getData();
-  }, []);
+  });
 
   return (
     <>
-      <AdminNavbar setAuth={setAuth} />
+      <ManagerNavbar setAuth={setAuth} />
 
       <div className="pt-4 container">
-        <h3 className="my-3 text-center">Admin Complete Order</h3>
-
+        <h3 className="my-3 text-center">Manager Delivery Boy</h3>
         <table id="table-to-xls" className="table table-hover table-dark">
           <thead>
             <tr className="text-center">
-              <th scope="col">user_id</th>
-              <th scope="col">order_status</th>
-              <th scope="col">order_user_city</th>
-              <th scope="col">order_id</th>
-              <th scope="col">awb_number</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email ID</th>
+              <th scope="col">City</th>
+              <th scope="col">Area</th>
+              <th scope="col">Pincode</th>
+              <th scope="col">Contact</th>
             </tr>
           </thead>
           <tbody>
             {value.length > 0 &&
               value.map((element, inx) => (
                 <tr key={inx} className="text-center">
-                  {element.order_status !== "Done" ? (
-                    ""
-                  ) : (
-                    <>
-                      <td>{element.user_id}</td>
-                      <td>{element.order_status}</td>
-                      <td>{element.order_user_city}</td>
-                      <td>{element.order_id}</td>
-                      <td>{element.awb_number}</td>
-                    </>
-                  )}
+                  <td>{element.name}</td>
+                  <td>{element.email}</td>
+                  <td>{element.city}</td>
+                  <td>{element.area}</td>
+                  <td>{element.pincode}</td>
+                  <td>{element.contact}</td>
                 </tr>
               ))}
           </tbody>
@@ -64,14 +61,14 @@ export default function AdminCompleteOrder({ setAuth }) {
           id="test-table-xls-button"
           className="download-table-xls-button"
           table="table-to-xls"
-          filename="admin-complete-order"
+          filename="manager-deliveryBoy-details"
           sheet="tablexls"
           buttonText="Download as XLS"
         />
       </div>
 
       <div className="text-center mt-3 container">
-        <a href="/AdminOrder" style={{ textDecoration: "none" }}>
+        <a href="/ManagerDeliveryBoy" style={{ textDecoration: "none" }}>
           <button>Back</button>
         </a>
       </div>

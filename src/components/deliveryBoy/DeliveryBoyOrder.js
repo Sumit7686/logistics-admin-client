@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import DeliveryBoyNavbar from "../navbar/DeliveryBoyNavbar";
+import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import { toast } from "react-toastify";
 
 export default function DeliveryBoyOrder({ setAuth }) {
@@ -37,7 +38,7 @@ export default function DeliveryBoyOrder({ setAuth }) {
       <div className="pt-4 container">
         <h3 className="my-3 text-center">Delivery Boy Order</h3>
         {isValid === true ? (
-          <table className="table table-hover table-dark">
+          <table id="table-to-xls" className="table table-hover table-dark">
             <thead>
               <tr className="text-center">
                 <th scope="col">user_id</th>
@@ -47,7 +48,6 @@ export default function DeliveryBoyOrder({ setAuth }) {
                 <th scope="col">order_user_contact</th>
                 <th scope="col">order_id</th>
                 <th scope="col">order_status</th>
-                <th scope="col">awb_number</th>
               </tr>
             </thead>
             <tbody>
@@ -65,7 +65,6 @@ export default function DeliveryBoyOrder({ setAuth }) {
                         <td>{element.order_user_contact}</td>
                         <td>{element.order_id}</td>
                         <td>{element.order_status}</td>
-                        <td>{element.awb_number}</td>
                       </>
                     )}
                   </tr>
@@ -77,6 +76,23 @@ export default function DeliveryBoyOrder({ setAuth }) {
             Order is not Available.
           </h3>
         )}
+      </div>
+
+      <div className="container mt-5 pt-3">
+        <ReactHTMLTableToExcel
+          id="test-table-xls-button"
+          className="download-table-xls-button"
+          table="table-to-xls"
+          filename="deliveryBoy-order"
+          sheet="tablexls"
+          buttonText="Download as XLS"
+        />
+      </div>
+
+      <div className="text-center my-3 container">
+        <a href="/DeliveryBoyHome" style={{ textDecoration: "none" }}>
+          <button>Back</button>
+        </a>
       </div>
     </>
   );

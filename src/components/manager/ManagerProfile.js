@@ -53,6 +53,12 @@ export default function ManagerProfile({ setAuth }) {
           <button>Change Password</button>
         </div>
       </div>
+
+      <div className="text-center my-3 container">
+        <a href="/ManagerHome" style={{ textDecoration: "none" }}>
+          <button>Back</button>
+        </a>
+      </div>
     </>
   );
 }

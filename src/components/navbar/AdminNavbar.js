@@ -40,42 +40,6 @@ export default function AdminNavbar({ setAuth }) {
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
             <div className="ml-auto">
               <ul className="header nav navbar-nav navbar-right">
-                {/* <li className="nav-item active">
-                  <NavLink
-                    className="nav-link"
-                    to="/AdminUser"
-                    activeClassName="active"
-                  >
-                    User
-                  </NavLink>
-                </li>
-                <li className="nav-item active">
-                  <NavLink
-                    className="nav-link"
-                    to="/AdminManager"
-                    activeClassName="active"
-                  >
-                    Manager
-                  </NavLink>
-                </li>
-                <li className="nav-item active">
-                  <NavLink
-                    className="nav-link"
-                    to="/AdminOrder"
-                    activeClassName="active"
-                  >
-                    Order
-                  </NavLink>
-                </li>
-                <li className="nav-item active">
-                  <NavLink
-                    className="nav-link"
-                    to="/AdminAddManager"
-                    activeClassName="active"
-                  >
-                    Add Manager
-                  </NavLink>
-                </li> */}
                 <li className="nav-item dropdown px-5 active">
                   <a
                     className="name-btn nav-link dropdown-toggle btn rounded p-2"

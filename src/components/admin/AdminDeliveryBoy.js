@@ -1,78 +1,56 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { toast } from "react-toastify";
-import { RiDeleteBinFill } from "react-icons/ri";
+import React from "react";
 import AdminNavbar from "../navbar/AdminNavbar";
 
 export default function AdminDeliveryBoy({ setAuth }) {
-  const [value, setValue] = useState([]);
-
-  const getData = async () => {
-    await axios
-      .get("http://localhost:5001/admin/allDeliveryBoyAdmin")
-      .then((result) => {
-        setValue(result.data.message);
-      })
-      .catch((err) => {
-        console.log("admin user get data error :", err);
-      });
-  };
-
-  const deleteUser = async (id) => {
-    await axios
-      .delete(`http://localhost:5001/admin/deleteDeliveryBoyAdmin/${id}`)
-      .then((result) => {
-        toast.success(result.data.message);
-        getData();
-      })
-      .catch((err) => {
-        console.log("user delete error :", err);
-        toast.error("Server Error.");
-      });
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
   return (
     <>
       <AdminNavbar setAuth={setAuth} />
 
-      <div className="pt-4 container">
-        <h3 className="my-3 text-center">Delivery Boy Details</h3>
-        <table className="table table-hover table-dark">
-          <thead>
-            <tr className="text-center">
-              <th scope="col">Name</th>
-              <th scope="col">Email ID</th>
-              <th scope="col">City</th>
-              <th scope="col">Area</th>
-              <th scope="col">Pincode</th>
-              <th scope="col">Contact</th>
-              <th scope="col">Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {value.length > 0 &&
-              value.map((element, inx) => (
-                <tr key={inx} className="text-center">
-                  <td>{element.name}</td>
-                  <td>{element.email}</td>
-                  <td>{element.city}</td>
-                  <td>{element.area}</td>
-                  <td>{element.pincode}</td>
-                  <td>{element.contact}</td>
-                  <td
-                    onClick={() => deleteUser(element._id)}
-                    style={{ fontSize: "20px" }}
-                  >
-                    <RiDeleteBinFill />
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
+      <div className="container pt-4">
+        <div className="partner-body-2 align-items-center">
+          <div className="row text-center mt-5">
+            <div className="col-md-6">
+              <img
+                src="/photos/admin/user(1).png"
+                alt="sign-up"
+                className="has-retina img-responsive rounded"
+                style={{ border: "5px solid" }}
+              />
+              <div className="mb-5"></div>
+              <a
+                href="/AdminDeliveryBoyDetails"
+                style={{ textDecoration: "none" }}
+              >
+                <span
+                  className="p py-1 px-4 rounded"
+                  style={{ border: "1px solid" }}
+                >
+                  Delivery Boy Details
+                </span>
+              </a>
+            </div>
+            <div className="col-md-6">
+              <img
+                src="/photos/admin/admin(1).png"
+                alt="sign-up"
+                className="has-retina img-responsive rounded"
+                style={{ border: "5px solid" }}
+              />
+              <div className="mb-5"></div>
+              <a
+                href="/AdminDeliveryBoyComplaints"
+                style={{ textDecoration: "none" }}
+              >
+                <span
+                  className="p py-1 px-4 rounded"
+                  style={{ border: "1px solid" }}
+                >
+                  Delivery Boy Complaints
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="text-center mt-5 container">

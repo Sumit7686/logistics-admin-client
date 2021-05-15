@@ -1,16 +1,16 @@
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { RiDeleteBinFill } from "react-icons/ri";
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import AdminNavbar from "../navbar/AdminNavbar";
-import { RiDeleteBinFill } from "react-icons/ri";
 
-export default function AdminUser({ setAuth }) {
+export default function AdminDeliveryBoyDetails({ setAuth }) {
   const [value, setValue] = useState([]);
 
   const getData = async () => {
     await axios
-      .get("http://localhost:5001/admin/allUser")
+      .get("http://localhost:5001/admin/allDeliveryBoyAdmin")
       .then((result) => {
         setValue(result.data.message);
       })
@@ -21,7 +21,7 @@ export default function AdminUser({ setAuth }) {
 
   const deleteUser = async (id) => {
     await axios
-      .delete(`http://localhost:5001/admin/deleteUser/${id}`)
+      .delete(`http://localhost:5001/admin/deleteDeliveryBoyAdmin/${id}`)
       .then((result) => {
         toast.success(result.data.message);
         getData();
@@ -41,13 +41,14 @@ export default function AdminUser({ setAuth }) {
       <AdminNavbar setAuth={setAuth} />
 
       <div className="pt-4 container">
-        <h3 className="my-3 text-center">User Details</h3>
+        <h3 className="my-3 text-center">Delivery Boy Details</h3>
         <table id="table-to-xls" className="table table-hover table-dark">
           <thead>
             <tr className="text-center">
-              <th scope="col">Id</th>
               <th scope="col">Name</th>
               <th scope="col">Email ID</th>
+              <th scope="col">City</th>
+              <th scope="col">Area</th>
               <th scope="col">Pincode</th>
               <th scope="col">Contact</th>
               <th scope="col">Delete</th>
@@ -57,9 +58,10 @@ export default function AdminUser({ setAuth }) {
             {value.length > 0 &&
               value.map((element, inx) => (
                 <tr key={inx} className="text-center">
-                  <td>{element._id}</td>
                   <td>{element.name}</td>
                   <td>{element.email}</td>
+                  <td>{element.city}</td>
+                  <td>{element.area}</td>
                   <td>{element.pincode}</td>
                   <td>{element.contact}</td>
                   <td
@@ -79,14 +81,14 @@ export default function AdminUser({ setAuth }) {
           id="test-table-xls-button"
           className="download-table-xls-button"
           table="table-to-xls"
-          filename="admin-user-details"
+          filename="admin-deliveryBoy-details"
           sheet="tablexls"
           buttonText="Download as XLS"
         />
       </div>
 
       <div className="text-center mt-3 container">
-        <a href="/AdminHome" style={{ textDecoration: "none" }}>
+        <a href="/AdminDeliveryBoy" style={{ textDecoration: "none" }}>
           <button>Back</button>
         </a>
       </div>

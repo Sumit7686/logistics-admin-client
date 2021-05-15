@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { RiDeleteBinFill } from "react-icons/ri";
+import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import AdminNavbar from "../navbar/AdminNavbar";
 
 export default function AdminManagerDetails({ setAuth }) {
@@ -41,7 +42,7 @@ export default function AdminManagerDetails({ setAuth }) {
 
       <div className="pt-4 container">
         <h3 className="my-3 text-center">Manager Details</h3>
-        <table className="table table-hover table-dark">
+        <table id="table-to-xls" className="table table-hover table-dark">
           <thead>
             <tr className="text-center">
               <th scope="col">Role</th>
@@ -83,7 +84,18 @@ export default function AdminManagerDetails({ setAuth }) {
         </table>
       </div>
 
-      <div className="text-center mt-5 container">
+      <div className="container mt-5 pt-3">
+        <ReactHTMLTableToExcel
+          id="test-table-xls-button"
+          className="download-table-xls-button"
+          table="table-to-xls"
+          filename="admin-manager-details"
+          sheet="tablexls"
+          buttonText="Download as XLS"
+        />
+      </div>
+
+      <div className="text-center mt-3 container">
         <a href="/AdminManager" style={{ textDecoration: "none" }}>
           <button>Back</button>
         </a>

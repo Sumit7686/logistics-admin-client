@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import "../../css/Navbar.css";
 
@@ -40,33 +40,6 @@ export default function ManagerNavbar({ setAuth }) {
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
             <div className="ml-auto">
               <ul className="header nav navbar-nav navbar-right">
-                <li className="nav-item active">
-                  <NavLink
-                    className="nav-link"
-                    to="/ManagerDeliveryBoy"
-                    activeClassName="active"
-                  >
-                    Delivery Boy
-                  </NavLink>
-                </li>
-                <li className="nav-item active">
-                  <NavLink
-                    className="nav-link"
-                    to="/ManagerOrder"
-                    activeClassName="active"
-                  >
-                    Order
-                  </NavLink>
-                </li>
-                <li className="nav-item active">
-                  <NavLink
-                    className="nav-link"
-                    to="/ManagerAddDeliveryBoy"
-                    activeClassName="active"
-                  >
-                    Add Delivery Boy
-                  </NavLink>
-                </li>
                 <li className="nav-item dropdown px-5 active">
                   <a
                     className="name-btn nav-link dropdown-toggle btn rounded p-2"

@@ -23,6 +23,8 @@ import AdminOrder from "./components/admin/AdminOrder";
 import AdminCompleteOrder from "./components/admin/AdminCompleteOrder";
 import AdminCurrentOrder from "./components/admin/AdminCurrentOrder";
 import AdminDeliveryBoy from "./components/admin/AdminDeliveryBoy";
+import AdminDeliveryBoyComplaints from "./components/admin/AdminDeliveryBoyComplaints";
+import AdminDeliveryBoyDetails from "./components/admin/AdminDeliveryBoyDetails";
 import AdminUser from "./components/admin/AdminUser";
 
 // Manager.
@@ -30,15 +32,17 @@ import ManagerHome from "./components/manager/ManagerHome";
 import ManagerProfile from "./components/manager/ManagerProfile";
 import ManagerOrder from "./components/manager/ManagerOrder";
 import ManagerDeliveryBoy from "./components/manager/ManagerDeliveryBoy";
+import ManagerDeliveryBoyDetails from "./components/manager/ManagerDeliveryBoyDetails";
 import ManagerAddDeliveryBoy from "./components/manager/ManagerAddDeliveryBoy";
 import StatusUpdate from "./components/manager/StatusUpdate";
+import ManagerCurrentOrder from "./components/manager/ManagerCurrentOrder";
 import ManagerCompleteOrder from "./components/manager/ManagerCompleteOrder";
 
 // Delivery Boy.
 import DeliveryBoyHome from "./components/deliveryBoy/DeliveryBoyHome";
 import DeliveryBoyProfile from "./components/deliveryBoy/DeliveryBoyProfile";
 import DeliveryBoyOrder from "./components/deliveryBoy/DeliveryBoyOrder";
-import DeliveryBoyFeedback from "./components/deliveryBoy/DeliveryBoyFeedback";
+import DeliveryBoyComplaints from "./components/deliveryBoy/DeliveryBoyComplaints";
 
 toast.configure();
 
@@ -197,6 +201,28 @@ function App() {
               )
             }
           />
+          <Route
+            exact
+            path="/AdminDeliveryBoyComplaints"
+            render={(props) =>
+              isAuthenticated ? (
+                <AdminDeliveryBoyComplaints {...props} setAuth={setAuth} />
+              ) : (
+                <Redirect to="/AdminDeliveryBoyComplaints" />
+              )
+            }
+          />
+          <Route
+            exact
+            path="/AdminDeliveryBoyDetails"
+            render={(props) =>
+              isAuthenticated ? (
+                <AdminDeliveryBoyDetails {...props} setAuth={setAuth} />
+              ) : (
+                <Redirect to="/AdminDeliveryBoyDetails" />
+              )
+            }
+          />
 
           {/* Manager Routes. */}
           <Route
@@ -245,6 +271,17 @@ function App() {
           />
           <Route
             exact
+            path="/ManagerDeliveryBoyDetails"
+            render={(props) =>
+              isAuthenticated ? (
+                <ManagerDeliveryBoyDetails {...props} setAuth={setAuth} />
+              ) : (
+                <Redirect to="/ManagerDeliveryBoyDetails" />
+              )
+            }
+          />
+          <Route
+            exact
             path="/ManagerAddDeliveryBoy"
             render={(props) =>
               isAuthenticated ? (
@@ -262,6 +299,17 @@ function App() {
                 <StatusUpdate {...props} setAuth={setAuth} />
               ) : (
                 <Redirect to="/StatusUpdate" />
+              )
+            }
+          />
+          <Route
+            exact
+            path="/ManagerCurrentOrder"
+            render={(props) =>
+              isAuthenticated ? (
+                <ManagerCurrentOrder {...props} setAuth={setAuth} />
+              ) : (
+                <Redirect to="/ManagerCurrentOrder" />
               )
             }
           />
@@ -313,12 +361,12 @@ function App() {
           />
           <Route
             exact
-            path="/DeliveryBoyFeedback"
+            path="/DeliveryBoyComplaints"
             render={(props) =>
               isAuthenticated ? (
-                <DeliveryBoyFeedback {...props} setAuth={setAuth} />
+                <DeliveryBoyComplaints {...props} setAuth={setAuth} />
               ) : (
-                <Redirect to="/DeliveryBoyFeedback" />
+                <Redirect to="/DeliveryBoyComplaints" />
               )
             }
           />
