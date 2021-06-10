@@ -1,89 +1,72 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import DeliveryBoyNavbar from "../navbar/DeliveryBoyNavbar";
-import { toast } from "react-toastify";
+import "../../css/Darshan.css";
 
 export default function DeliveryBoyComplaints({ setAuth }) {
-  const [subject, setSubject] = useState("");
-  const [id, setId] = useState("");
-  const [description, setDescription] = useState("");
-
-  const getId = async () => {
-    setId(localStorage.getItem("id"));
-  };
-
-  const onSubmitForm = async (e) => {
-    e.preventDefault();
-
-    const body = { subject, description };
-
-    axios
-      .post(`http://localhost:5001/complaints/complaints/${id}`, body)
-      .then((result) => {
-        toast.success(result.data.message);
-      });
-  };
-
-  useEffect(() => {
-    getId();
-  });
-
   return (
     <>
       <DeliveryBoyNavbar setAuth={setAuth} />
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-10 col-xl-9 mx-auto">
-            <div className="card card-signin flex-row my-5">
-              <div className="card-img-left d-none d-md-flex"></div>
-              <div className="card-body">
-                <h5 className="card-title text-center">Complaints Box</h5>
-                <form onSubmit={(e) => onSubmitForm(e)}>
-                  <div className="form-group">
-                    <input
-                      className="cssField"
-                      type="text"
-                      name="subject"
-                      value={subject}
-                      onChange={(e) => setSubject(e.target.value)}
-                      required
-                    />
-                    <label alt="Enter Subject" placeholder="Subject"></label>
-                  </div>
-                  <div className="form-group">
-                    <input
-                      className="cssField"
-                      type="text"
-                      name="description"
-                      value={description}
-                      onChange={(e) => setDescription(e.target.value)}
-                      required
-                    />
-                    <label
-                      alt="Enter Description"
-                      placeholder="Description."
-                    ></label>
-                  </div>
 
-                  <div className="d-flex flex-column">
-                    <button
-                      type="submit"
-                      className="btn btn-lg btn-outline-success btn-block text-uppercase mb-3"
-                    >
-                      Send Complaints
-                    </button>
-                  </div>
-                </form>
+      <div className="container pt-5">
+        <div className="d-flex align-items-center" data-aos="zoom-out">
+          <a
+            href="/DeliveryBoyHome"
+            style={{
+              textDecoration: "none",
+              fontSize: "45px",
+              color: "black",
+            }}
+          >
+            <i class="las la-angle-double-left"></i>
+          </a>
+        </div>
+
+        <div className="partner-body-2 align-items-center">
+          <div className="row text-center mt-5">
+            <div className="col-md-4 offset-1" data-aos="fade-right">
+              <div className="contactcard">
+                <img
+                  src="/photos/admin/order(1).png"
+                  alt="select-location"
+                  className="has-retina img-responsive rounded"
+                />
+                <div className="mb-5"></div>
+                <a
+                  href="/DeliveryBoyViewComplaints"
+                  style={{ textDecoration: "none" }}
+                >
+                  <span
+                    className="p py-1 px-4 rounded"
+                    style={{ border: "1px solid" }}
+                  >
+                    View Complaints
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div className="col-md-4 offset-2" data-aos="fade-left">
+              <div className="contactcard">
+                <img
+                  src="/photos/admin/complaints(2).png"
+                  alt="delivering-service"
+                  className="has-retina img-responsive rounded"
+                />
+                <div className="mb-5"></div>
+                <a
+                  href="/DeliveryBoyAddComplaints"
+                  style={{ textDecoration: "none" }}
+                >
+                  <span
+                    className="p py-1 px-4 mt-3 rounded"
+                    style={{ border: "1px solid" }}
+                  >
+                    Add Complaints
+                  </span>
+                </a>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="text-center my-3 container">
-        <a href="/DeliveryBoyHome" style={{ textDecoration: "none" }}>
-          <button>Back</button>
-        </a>
       </div>
     </>
   );

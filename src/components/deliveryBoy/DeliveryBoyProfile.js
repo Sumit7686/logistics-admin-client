@@ -41,10 +41,19 @@ export default function DeliveryBoyProfile({ setAuth }) {
     <>
       <DeliveryBoyNavbar setAuth={setAuth} />
 
-      <div className="py-5 items-center">
-        <h2 className="text-center">User Profile Card</h2>
+      <div
+        className="px-3 pt-5 pb-3 items-center profileCard"
+        data-aos="flip-right"
+        data-aos-easing="ease-out-cubic"
+        data-aos-duration="2000"
+      >
+        <h2 className="text-center">Delivery Boy Profile Card</h2>
         <div className="profileCard">
-          <img src="/photos/profile/1.jpg" alt="profile" className="w-100" />
+          <img
+            src="/photos/profile/profile(1).png"
+            alt="profileDeliveryBoy"
+            className="w-100"
+          />
           <h3 className="my-4">{name}</h3>
           <p className="title">Role : {role} </p>
           <p className="title">Email : {email} </p>
@@ -55,12 +64,6 @@ export default function DeliveryBoyProfile({ setAuth }) {
           {/* <p className="title">Password : {password} </p> */}
           <button>Change Password</button>
         </div>
-      </div>
-
-      <div className="text-center my-3 container">
-        <a href="/DeliveryBoyHome" style={{ textDecoration: "none" }}>
-          <button>Back</button>
-        </a>
       </div>
     </>
   );

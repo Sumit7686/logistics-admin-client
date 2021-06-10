@@ -39,10 +39,19 @@ export default function ManagerProfile({ setAuth }) {
     <>
       <ManagerNavbar setAuth={setAuth} />
 
-      <div className="py-5 items-center">
+      <div
+        className="px-3 pt-5 items-center profileCard"
+        data-aos="flip-right"
+        data-aos-easing="ease-out-cubic"
+        data-aos-duration="2000"
+      >
         <h2 className="text-center">Manager Profile Card</h2>
         <div className="profileCard">
-          <img src="/photos/profile/1.jpg" alt="profile" className="w-100" />
+          <img
+            src="/photos/profile/profile(1).png"
+            alt="profilemanager"
+            className="w-100"
+          />
           <h3 className="my-4">{name}</h3>
           <p className="title">Role : {role} </p>
           <p className="title">Email : {email} </p>
@@ -50,14 +59,8 @@ export default function ManagerProfile({ setAuth }) {
           <p className="title">Area : {area} </p>
           <p className="title">Pincode : {pincode} </p>
           <p className="title">Contact : {contact} </p>
-          <button>Change Password</button>
+          <button className="mb-3">Change Password</button>
         </div>
-      </div>
-
-      <div className="text-center my-3 container">
-        <a href="/ManagerHome" style={{ textDecoration: "none" }}>
-          <button>Back</button>
-        </a>
       </div>
     </>
   );

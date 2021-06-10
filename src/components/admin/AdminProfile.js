@@ -33,22 +33,25 @@ export default function AdminProfile({ setAuth }) {
     <>
       <AdminNavbar setAuth={setAuth} />
 
-      <div className="py-4 items-center">
+      <div
+        className="px-3 pt-5 items-center profileCard"
+        data-aos="flip-right"
+        data-aos-easing="ease-out-cubic"
+        data-aos-duration="2000"
+      >
         <h2 className="text-center">Admin Profile Card</h2>
         <div className="profileCard">
-          <img src="/photos/profile/1.jpg" alt="profile" className="w-100" />
+          <img
+            src="/photos/profile/profile(1).png"
+            alt="profileAdmin"
+            className="w-100"
+          />
           <h3 className="my-4">{name}</h3>
           <p className="title">Role : {role}</p>
           <p className="title">Email : {email}</p>
           {/* <p className="title">Password : {password}</p> */}
           <button>Change Password</button>
         </div>
-      </div>
-
-      <div className="text-center mt-5 container">
-        <a href="/AdminHome" style={{ textDecoration: "none" }}>
-          <button>Back</button>
-        </a>
       </div>
     </>
   );

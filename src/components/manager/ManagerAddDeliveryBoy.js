@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import ManagerNavbar from "../navbar/ManagerNavbar";
+import "../../css/Register.css";
 
 export default function ManagerAddDeliveryBoy({ setAuth }) {
   const [name, setName] = useState("");
@@ -33,7 +34,12 @@ export default function ManagerAddDeliveryBoy({ setAuth }) {
       <ManagerNavbar setAuth={setAuth} />
 
       <div className="form-add">
-        <div className="container">
+        <div
+          className="container"
+          data-aos="flip-left"
+          data-aos-easing="ease-out-cubic"
+          data-aos-duration="2000"
+        >
           <div className="row">
             <div className="col-lg-10 col-xl-9 mx-auto">
               <div className="card card-signin flex-row my-5">
@@ -136,11 +142,12 @@ export default function ManagerAddDeliveryBoy({ setAuth }) {
             </div>
           </div>
         </div>
-        <div className="text-center mt-5 container">
+
+        {/* <div className="text-center mt-5 container">
           <a href="/ManagerDeliveryBoy" style={{ textDecoration: "none" }}>
             <button>Back</button>
           </a>
-        </div>
+        </div> */}
       </div>
     </>
   );

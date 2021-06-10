@@ -1,94 +1,65 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import ReactHTMLTableToExcel from "react-html-table-to-excel";
+import React from "react";
 import AdminNavbar from "../navbar/AdminNavbar";
-import { RiDeleteBinFill } from "react-icons/ri";
+import "../../css/Darshan.css";
 
 export default function AdminUser({ setAuth }) {
-  const [value, setValue] = useState([]);
-
-  const getData = async () => {
-    await axios
-      .get("http://localhost:5001/admin/allUser")
-      .then((result) => {
-        setValue(result.data.message);
-      })
-      .catch((err) => {
-        console.log("admin user get data error :", err);
-      });
-  };
-
-  const deleteUser = async (id) => {
-    await axios
-      .delete(`http://localhost:5001/admin/deleteUser/${id}`)
-      .then((result) => {
-        toast.success(result.data.message);
-        getData();
-      })
-      .catch((err) => {
-        console.log("user delete error :", err);
-        toast.error("Server Error.");
-      });
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
   return (
     <>
       <AdminNavbar setAuth={setAuth} />
 
-      <div className="pt-4 container">
-        <h3 className="my-3 text-center">User Details</h3>
-        <table id="table-to-xls" className="table table-hover table-dark">
-          <thead>
-            <tr className="text-center">
-              <th scope="col">Id</th>
-              <th scope="col">Name</th>
-              <th scope="col">Email ID</th>
-              <th scope="col">Pincode</th>
-              <th scope="col">Contact</th>
-              <th scope="col">Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {value.length > 0 &&
-              value.map((element, inx) => (
-                <tr key={inx} className="text-center">
-                  <td>{element._id}</td>
-                  <td>{element.name}</td>
-                  <td>{element.email}</td>
-                  <td>{element.pincode}</td>
-                  <td>{element.contact}</td>
-                  <td
-                    onClick={() => deleteUser(element._id)}
-                    style={{ fontSize: "20px" }}
+      <div className="container pt-4">
+        <div data-aos="zoom-out">
+          <a
+            href="/AdminHome"
+            style={{ textDecoration: "none", fontSize: "45px", color: "black" }}
+          >
+            <i class="las la-angle-double-left"></i>
+          </a>
+        </div>
+
+        <div className="partner-body-2 align-items-center">
+          <div className="row text-center mt-5">
+            <div className="col-md-4 offset-1" data-aos="fade-right">
+              <div className="contactcard">
+                <img
+                  src="/photos/admin/user(1).png"
+                  alt="sign-up"
+                  className="has-retina img-responsive rounded"
+                />
+                <div className="mb-5"></div>
+                <a href="/AdminUserDetails" style={{ textDecoration: "none" }}>
+                  <span
+                    className="p py-1 px-4 rounded"
+                    style={{ border: "1px solid" }}
                   >
-                    <RiDeleteBinFill />
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
-      </div>
-
-      <div className="container mt-5 pt-3">
-        <ReactHTMLTableToExcel
-          id="test-table-xls-button"
-          className="download-table-xls-button"
-          table="table-to-xls"
-          filename="admin-user-details"
-          sheet="tablexls"
-          buttonText="Download as XLS"
-        />
-      </div>
-
-      <div className="text-center mt-3 container">
-        <a href="/AdminHome" style={{ textDecoration: "none" }}>
-          <button>Back</button>
-        </a>
+                    User Details
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div className="col-md-4 offset-2" data-aos="fade-left">
+              <div className="contactcard">
+                <img
+                  src="/photos/admin/complaints(2).png"
+                  alt="sign-up"
+                  className="has-retina img-responsive rounded"
+                />
+                <div className="mb-5"></div>
+                <a
+                  href="/AdminUserComplaints"
+                  style={{ textDecoration: "none" }}
+                >
+                  <span
+                    className="p py-1 px-4 rounded"
+                    style={{ border: "1px solid" }}
+                  >
+                    User Complaints
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

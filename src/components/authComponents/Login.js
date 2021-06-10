@@ -3,7 +3,6 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import "../../css/Login.css";
-// import Navbar from "../navbar/Navbar";
 
 export default function Login({ setAuth }) {
   const history = useHistory();
@@ -29,7 +28,7 @@ export default function Login({ setAuth }) {
         }
         setAuth(true);
       } else {
-        toast.warning(result.data.message);
+        toast.error(result.data.message);
       }
     });
   };
@@ -37,7 +36,12 @@ export default function Login({ setAuth }) {
   return (
     <div className="form">
       <Fragment>
-        <div className="container">
+        <div
+          className="container"
+          data-aos="flip-left"
+          data-aos-easing="ease-out-cubic"
+          data-aos-duration="2000"
+        >
           <div className="row">
             <div className="col-lg-10 col-xl-9 mx-auto">
               <div className="card card-signin flex-row my-5">

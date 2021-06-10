@@ -2,6 +2,8 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import {
   BrowserRouter as Router,
   Route,
@@ -26,6 +28,9 @@ import AdminDeliveryBoy from "./components/admin/AdminDeliveryBoy";
 import AdminDeliveryBoyComplaints from "./components/admin/AdminDeliveryBoyComplaints";
 import AdminDeliveryBoyDetails from "./components/admin/AdminDeliveryBoyDetails";
 import AdminUser from "./components/admin/AdminUser";
+import AdminUserComplaints from "./components/admin/AdminUserComplaints";
+import AdminUserDetails from "./components/admin/AdminUserDetails";
+import AdminManagerMetting from "./components/admin/AdminManagerMetting";
 
 // Manager.
 import ManagerHome from "./components/manager/ManagerHome";
@@ -43,6 +48,8 @@ import DeliveryBoyHome from "./components/deliveryBoy/DeliveryBoyHome";
 import DeliveryBoyProfile from "./components/deliveryBoy/DeliveryBoyProfile";
 import DeliveryBoyOrder from "./components/deliveryBoy/DeliveryBoyOrder";
 import DeliveryBoyComplaints from "./components/deliveryBoy/DeliveryBoyComplaints";
+import DeliveryBoyAddComplaints from "./components/deliveryBoy/DeliveryBoyAddComplaints";
+import DeliveryBoyViewComplaints from "./components/deliveryBoy/DeliveryBoyViewComplaints";
 
 toast.configure();
 
@@ -71,6 +78,7 @@ function App() {
 
   useEffect(() => {
     isAuth();
+    AOS.init({ duration: 1000 });
   }, []);
 
   return (
@@ -223,6 +231,39 @@ function App() {
               )
             }
           />
+          <Route
+            exact
+            path="/AdminUserComplaints"
+            render={(props) =>
+              isAuthenticated ? (
+                <AdminUserComplaints {...props} setAuth={setAuth} />
+              ) : (
+                <Redirect to="/AdminUserComplaints" />
+              )
+            }
+          />
+          <Route
+            exact
+            path="/AdminUserDetails"
+            render={(props) =>
+              isAuthenticated ? (
+                <AdminUserDetails {...props} setAuth={setAuth} />
+              ) : (
+                <Redirect to="/AdminUserDetails" />
+              )
+            }
+          />
+          <Route
+            exact
+            path="/AdminManagerMetting"
+            render={(props) =>
+              isAuthenticated ? (
+                <AdminManagerMetting {...props} setAuth={setAuth} />
+              ) : (
+                <Redirect to="/AdminManagerMetting" />
+              )
+            }
+          />
 
           {/* Manager Routes. */}
           <Route
@@ -367,6 +408,28 @@ function App() {
                 <DeliveryBoyComplaints {...props} setAuth={setAuth} />
               ) : (
                 <Redirect to="/DeliveryBoyComplaints" />
+              )
+            }
+          />
+          <Route
+            exact
+            path="/DeliveryBoyAddComplaints"
+            render={(props) =>
+              isAuthenticated ? (
+                <DeliveryBoyAddComplaints {...props} setAuth={setAuth} />
+              ) : (
+                <Redirect to="/DeliveryBoyAddComplaints" />
+              )
+            }
+          />
+          <Route
+            exact
+            path="/DeliveryBoyViewComplaints"
+            render={(props) =>
+              isAuthenticated ? (
+                <DeliveryBoyViewComplaints {...props} setAuth={setAuth} />
+              ) : (
+                <Redirect to="/DeliveryBoyViewComplaints" />
               )
             }
           />

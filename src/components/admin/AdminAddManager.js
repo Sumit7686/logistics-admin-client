@@ -32,8 +32,14 @@ export default function AdminAddManager({ setAuth }) {
   return (
     <>
       <AdminNavbar setAuth={setAuth} />
+
       <div className="form-add">
-        <div className="container">
+        <div
+          className="container"
+          data-aos="flip-left"
+          data-aos-easing="ease-out-cubic"
+          data-aos-duration="2000"
+        >
           <div className="row">
             <div className="col-lg-10 col-xl-9 mx-auto">
               <div className="card card-signin flex-row my-5">
@@ -135,11 +141,6 @@ export default function AdminAddManager({ setAuth }) {
               </div>
             </div>
           </div>
-        </div>
-        <div className="text-center mt-5 container">
-          <a href="/AdminManager" style={{ textDecoration: "none" }}>
-            <button>Back</button>
-          </a>
         </div>
       </div>
     </>

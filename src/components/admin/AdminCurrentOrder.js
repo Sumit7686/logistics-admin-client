@@ -26,8 +26,39 @@ export default function AdminCurrentOrder({ setAuth }) {
       <AdminNavbar setAuth={setAuth} />
 
       <div className="pt-4 container">
-        <h3 className="my-3 text-center">Admin Current Order</h3>
-        <table id="table-to-xls" className="table table-hover table-dark">
+        <div className="d-flex align-items-center" data-aos="zoom-out">
+          <div>
+            <a
+              href="/AdminOrder"
+              style={{
+                textDecoration: "none",
+                fontSize: "45px",
+                color: "black",
+              }}
+            >
+              <i class="las la-angle-double-left"></i>
+            </a>
+          </div>
+          <div style={{ position: "absolute", right: "0%" }}>
+            <ReactHTMLTableToExcel
+              id="test-table-xls-button"
+              className="download-table-xls-button"
+              table="table-to-xls"
+              filename="admin-current-order"
+              sheet="tablexls"
+              buttonText="Download as XLS"
+            />
+          </div>
+        </div>
+
+        <h3 className="my-3 text-center" data-aos="zoom-out-down">
+          Admin Current Order
+        </h3>
+        <table
+          id="table-to-xls"
+          className="table table-hover table-dark"
+          data-aos="zoom-out-up"
+        >
           <thead>
             <tr className="text-center">
               <th scope="col">user_id</th>
@@ -56,23 +87,6 @@ export default function AdminCurrentOrder({ setAuth }) {
               ))}
           </tbody>
         </table>
-      </div>
-
-      <div className="container mt-5 pt-3">
-        <ReactHTMLTableToExcel
-          id="test-table-xls-button"
-          className="download-table-xls-button"
-          table="table-to-xls"
-          filename="admin-current-order"
-          sheet="tablexls"
-          buttonText="Download as XLS"
-        />
-      </div>
-
-      <div className="text-center mt-3 container">
-        <a href="/AdminOrder" style={{ textDecoration: "none" }}>
-          <button>Back</button>
-        </a>
       </div>
     </>
   );

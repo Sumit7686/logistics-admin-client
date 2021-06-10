@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import DeliveryBoyNavbar from "../navbar/DeliveryBoyNavbar";
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
-import { toast } from "react-toastify";
 
 export default function DeliveryBoyOrder({ setAuth }) {
   const [isValid, setIsValid] = useState();
@@ -16,7 +15,6 @@ export default function DeliveryBoyOrder({ setAuth }) {
       .then((result) => {
         setIsValid(result.data.isValid);
         if (result.data.isValid === false) {
-          toast.error(result.data.message);
           setValue(result.data.message);
         } else {
           setValue(result.data.message);
@@ -36,9 +34,40 @@ export default function DeliveryBoyOrder({ setAuth }) {
       <DeliveryBoyNavbar setAuth={setAuth} />
 
       <div className="pt-4 container">
-        <h3 className="my-3 text-center">Delivery Boy Order</h3>
+        <div className="d-flex align-items-center" data-aos="zoom-out">
+          <div>
+            <a
+              href="/DeliveryBoyHome"
+              style={{
+                textDecoration: "none",
+                fontSize: "45px",
+                color: "black",
+              }}
+            >
+              <i class="las la-angle-double-left"></i>
+            </a>
+          </div>
+          <div style={{ position: "absolute", right: "0%" }}>
+            <ReactHTMLTableToExcel
+              id="test-table-xls-button"
+              className="download-table-xls-button"
+              table="table-to-xls"
+              filename="deliveryBoy-order"
+              sheet="tablexls"
+              buttonText="Download as XLS"
+            />
+          </div>
+        </div>
+
+        <h3 className="my-3 text-center" data-aos="zoom-out-down">
+          Delivery Boy Order
+        </h3>
         {isValid === true ? (
-          <table id="table-to-xls" className="table table-hover table-dark">
+          <table
+            id="table-to-xls"
+            className="table table-hover table-dark"
+            data-aos="zoom-out-up"
+          >
             <thead>
               <tr className="text-center">
                 <th scope="col">user_id</th>
@@ -72,27 +101,10 @@ export default function DeliveryBoyOrder({ setAuth }) {
             </tbody>
           </table>
         ) : (
-          <h3 className="text-center mt-5 text-danger">
+          <h3 className="text-center mt-5 text-danger" data-aos="zoom-out-up">
             Order is not Available.
           </h3>
         )}
-      </div>
-
-      <div className="container mt-5 pt-3">
-        <ReactHTMLTableToExcel
-          id="test-table-xls-button"
-          className="download-table-xls-button"
-          table="table-to-xls"
-          filename="deliveryBoy-order"
-          sheet="tablexls"
-          buttonText="Download as XLS"
-        />
-      </div>
-
-      <div className="text-center my-3 container">
-        <a href="/DeliveryBoyHome" style={{ textDecoration: "none" }}>
-          <button>Back</button>
-        </a>
       </div>
     </>
   );

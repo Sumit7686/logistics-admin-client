@@ -49,9 +49,30 @@ export default function StatusUpdate(props, { setAuth }) {
     <>
       <ManagerNavbar setAuth={setAuth} />
 
-      <div className="py-5 items-center">
-        <h2 className="text-center">Order Status Update</h2>
-        <div className="profileCard pt-5">
+      <div className="py-5 items-center container">
+        <div className="d-flex align-items-center" data-aos="zoom-out">
+          <a
+            href="/ManagerCurrentOrder"
+            style={{
+              textDecoration: "none",
+              fontSize: "45px",
+              color: "black",
+            }}
+            onClick={() => localStorage.removeItem("order_id")}
+          >
+            <i class="las la-angle-double-left"></i>
+          </a>
+        </div>
+
+        <h2 className="text-center" data-aos="zoom-out">
+          Order Status Update
+        </h2>
+        <div
+          className="profileCard pt-5"
+          data-aos="flip-right"
+          data-aos-easing="ease-out-cubic"
+          data-aos-duration="2000"
+        >
           <label className="text-bold h4">Status Update</label>
           <select
             className="custom-select"
@@ -109,14 +130,6 @@ export default function StatusUpdate(props, { setAuth }) {
           <p className="title">User Pincode : {userPincode} </p>
           <button onClick={() => updateStatus()}>Update Status</button>
         </div>
-      </div>
-
-      <div className="text-center mt-5 container">
-        <a href="/ManagerOrder" style={{ textDecoration: "none" }}>
-          <button onClick={() => localStorage.removeItem("order_id")}>
-            Back
-          </button>
-        </a>
       </div>
     </>
   );

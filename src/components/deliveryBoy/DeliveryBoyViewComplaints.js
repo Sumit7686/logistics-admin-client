@@ -1,35 +1,37 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
+import React, { useState, useEffect } from "react";
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
-import AdminNavbar from "../navbar/AdminNavbar";
+import DeliveryBoyNavbar from "../navbar/DeliveryBoyNavbar";
 
-export default function AdminCompleteOrder({ setAuth }) {
+export default function DeliveryBoyViewComplaints({ setAuth }) {
+  const [id, setId] = useState("");
   const [value, setValue] = useState([]);
 
-  const getData = async () => {
-    await axios
-      .get("http://localhost:5001/admin/allOrder")
+  const getComplaintsData = () => {
+    setId(localStorage.getItem("id"));
+
+    axios
+      .get(
+        `http://localhost:5001/complaints/deliveryBoyPersonalComplaints/${id}`
+      )
       .then((result) => {
         setValue(result.data.message);
-      })
-      .catch((err) => {
-        console.log("admin user get data error :", err);
       });
   };
 
   useEffect(() => {
-    getData();
-  }, []);
+    getComplaintsData();
+  });
 
   return (
     <>
-      <AdminNavbar setAuth={setAuth} />
+      <DeliveryBoyNavbar setAuth={setAuth} />
 
-      <div className="pt-4 container">
+      <div className="pt-5 container">
         <div className="d-flex align-items-center" data-aos="zoom-out">
           <div>
             <a
-              href="/AdminOrder"
+              href="/DeliveryBoyComplaints"
               style={{
                 textDecoration: "none",
                 fontSize: "45px",
@@ -44,7 +46,7 @@ export default function AdminCompleteOrder({ setAuth }) {
               id="test-table-xls-button"
               className="download-table-xls-button"
               table="table-to-xls"
-              filename="admin-complete-order"
+              filename="deliveryBoy-view-complaints"
               sheet="tablexls"
               buttonText="Download as XLS"
             />
@@ -52,9 +54,8 @@ export default function AdminCompleteOrder({ setAuth }) {
         </div>
 
         <h3 className="my-3 text-center" data-aos="zoom-out-down">
-          Admin Complete Order
+          Your Complaints
         </h3>
-
         <table
           id="table-to-xls"
           className="table table-hover table-dark"
@@ -62,28 +63,18 @@ export default function AdminCompleteOrder({ setAuth }) {
         >
           <thead>
             <tr className="text-center">
-              <th scope="col">user_id</th>
-              <th scope="col">order_status</th>
-              <th scope="col">order_user_city</th>
-              <th scope="col">order_id</th>
-              <th scope="col">awb_number</th>
+              <th scope="col">Subject</th>
+              <th scope="col">Description</th>
             </tr>
           </thead>
           <tbody>
             {value.length > 0 &&
               value.map((element, inx) => (
                 <tr key={inx} className="text-center">
-                  {element.order_status !== "Done" ? (
-                    ""
-                  ) : (
-                    <>
-                      <td>{element.user_id}</td>
-                      <td>{element.order_status}</td>
-                      <td>{element.order_user_city}</td>
-                      <td>{element.order_id}</td>
-                      <td>{element.awb_number}</td>
-                    </>
-                  )}
+                  <>
+                    <td>{element.subject}</td>
+                    <td>{element.description}</td>
+                  </>
                 </tr>
               ))}
           </tbody>
